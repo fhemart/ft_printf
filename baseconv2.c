@@ -1,0 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   baseconv2.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fhemart <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/01/14 14:54:30 by fhemart           #+#    #+#             */
+/*   Updated: 2018/01/21 21:49:44 by fhemart          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+char				*lconvertbase10(t_str *retstr, unsigned long int nb,
+						int base)
+{
+	char			*str;
+	char			*tmp;
+	char			*ptr;
+	char			*baserep;
+
+	baserep = "0123456789abcdef";
+	tmp = ft_strnew2(retstr, 50);
+	ptr = &tmp[49];
+	while (nb != 0)
+	{
+		*--ptr = baserep[nb % base];
+		nb = nb / base;
+	}
+	if (ft_strlen(ptr) > 0)
+		str = ft_strdup2(retstr, ptr);
+	else
+	{
+		str = ft_strnew2(retstr, 1);
+		str[0] = '0';
+	}
+	free(tmp);
+	return (str);
+}
+
+char				*convertbase10(t_str *retstr, unsigned int nb, int base)
+{
+	char			*str;
+	char			*tmp;
+	char			*ptr;
+	char			*baserep;
+
+	baserep = "0123456789abcdef";
+	tmp = ft_strnew2(retstr, 50);
+	ptr = &tmp[49];
+	while (nb != 0)
+	{
+		*--ptr = baserep[nb % base];
+		nb = nb / base;
+	}
+	if (ft_strlen(ptr) > 0)
+		str = ft_strdup2(retstr, ptr);
+	else
+	{
+		str = ft_strnew2(retstr, 1);
+		str[0] = '0';
+	}
+	free(tmp);
+	return (str);
+}
